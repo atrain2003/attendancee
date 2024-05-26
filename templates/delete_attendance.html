@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete attendance records</title>
+</head>
+<body>
+    <h1>Delete attendance records</h1>
+
+    <form action="/delete_attendance" method="post">
+        <label for="course_name">Select a course:</label>
+        <select id="course_name" name="course_name" required>
+            {% for course in courses %}
+                <option value="{{ course }}">{{ course }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="attendance_date">Select attendance date:</label>
+        <select id="attendance_date" name="attendance_date" required>
+            {% for date in dates %}
+                <option value="{{ date }}">{{ date }}</option>
+            {% endfor %}
+        </select>
+
+        <input type="submit" value="DELETE">
+    </form>
+
+    {% if error_message %}
+        <p>{{ error_message }}</p>
+    {% endif %}
+
+<a href="/">GO BACK</a>
+</body>
+</html>

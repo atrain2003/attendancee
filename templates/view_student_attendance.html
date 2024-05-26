@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Attendance</title>
+</head>
+<body>
+    <h1>View Attendance</h1>
+
+    <form action="/view_student_attendance" method="post">
+        <label for="student_name">Enter a student's name:</label>
+        <input type="text" id="student_name" name="student_name" required>
+        <button type="submit">View attendance</button>
+    </form>
+
+    {% if error_message %}
+        <p>{{ error_message }}</p>
+    {% else %}
+        {% if student_name %}
+    <h2>Attendance records for {{ student_name }}</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Course name</th>
+                <th>Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if attendance_records %}
+                {% for record in attendance_records %}
+                    <tr>
+                        <td>{{ record[0] }}</td>
+                        <td>{{ record[1] }}</td>
+                        <td>{{ record[2] }}</td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="3">No attendance records found.</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+{% endif %}
+    {% endif %}
+
+<a href="/">GO BACK</a>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modify a student's Name</title>
+</head>
+<body>
+    <h1>Modify a student's name</h1>
+    <form action="/modify_student" method="post">
+        <label for="old_name">Old name:</label>
+        <input type="text" id="old_name" name="old_name" required>
+
+        <label for="new_name">New name:</label>
+        <input type="text" id="new_name" name="new_name" required>
+
+        <input type="submit" value="MODIFY">
+    </form>
+    <a href="/">GO BACK</a>
+</body>
+</html>

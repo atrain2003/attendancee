@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark attendances</title>
+</head>
+<body>
+    <h1>Mark attendances</h1>
+
+    <form action="/mark_attendance" method="post">
+        <label for="course_name">Course name:</label>
+        <input type="text" id="course_name" name="course_name" required>
+
+        <label for="attendance_date">Attendance date (YYYY-MM-DD):</label>
+        <input type="text" id="attendance_date" name="attendance_date" required>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Student ID</th>
+                    <th>Student name</th>
+                    <th>Present</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student_id, student_name in students %}
+                    <tr>
+                        <td>{{ student_id }}</td>
+                        <td>{{ student_name }}</td>
+                        <td>
+                            <label><input type="radio" name="attendance_{{ student_id }}" value="Present"> Present</label>
+                            <label><input type="radio" name="attendance_{{ student_id }}" value="Absent"> Absent</label>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <input type="submit" value="CONFIRM">
+    </form>
+<a href="/">GO BACK</a>
+</body>
+</html>

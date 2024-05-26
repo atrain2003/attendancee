@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check pass status</title>
+</head>
+<body>
+    <h2>Pass status</h2>
+
+    <form method="post" action="{{ url_for('check_pass_status_route') }}">
+        <label for="student_name">Student name:</label>
+        <input type="text" id="student_name" name="student_name" required>
+
+        <label for="course_name">Course name:</label>
+        <input type="text" id="course_name" name="course_name" required>
+
+        <button type="submit">Check pass status</button>
+    </form>
+
+    {% if pass_status is not none %}
+        {% if pass_status %}
+            <p>{{ student_name }} has the required minimum attendances for "{{ course_name }}" !!</p>
+        {% else %}
+            <p>{{ student_name }} has not met the minimum attendance requirement for "{{ course_name }}"...</p>
+        {% endif %}
+    {% endif %}
+
+    <a href="/">GO BACK</a>
+</body>
+</html>

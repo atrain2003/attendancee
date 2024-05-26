@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modify attendances</title>
+</head>
+<body>
+    <h1>Modify attendances</h1>
+
+    <form action="/modify_attendance" method="post">
+        <label for="course_name">Course name:</label>
+        <select name="course_name" id="course_name" required>
+            {% for course in courses %}
+                <option value="{{ course }}">{{ course }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="attendance_date">Attendance date:</label>
+        <select name="attendance_date" id="attendance_date" required>
+            {% for date in dates %}
+                <option value="{{ date }}">{{ date }}</option>
+            {% endfor %}
+        </select>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Student ID</th>
+                    <th>Student name</th>
+                    <th>Present</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student_id, student_name in students %}
+                    <tr>
+                        <td>{{ student_id }}</td>
+                        <td>{{ student_name }}</td>
+                        <td>
+                            <label><input type="radio" name="attendance_{{ student_id }}" value="Present"> Present</label>
+                            <label><input type="radio" name="attendance_{{ student_id }}" value="Absent"> Absent</label>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <input type="submit" value="CONFIRM">
+    </form>
+    <a href="/">GO BACK</a>
+</body>
+</html>
